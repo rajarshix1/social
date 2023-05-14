@@ -8,10 +8,10 @@ const SignupPage = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
     const router = useRouter()
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
-    // Call API to validate credentials and retrieve JWT token
+    await axios.post('/api/user', { name: name, email: email, password: password } )
+    router.push('/login')
   };
   useEffect(() => {
     const existingUser = localStorage.getItem('userdata')
@@ -67,7 +67,7 @@ const SignupPage = () => {
           />
         </div>
         <button type="submit" className={styles.button}>
-          Login
+          Signup
         </button>
       </form>
     </div>
