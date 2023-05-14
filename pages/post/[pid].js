@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useAppContext } from '@/context/AppContext';
+import Navbar from '@/components/navbar';
 
 const PostPage = () => {
   const [post, setPost] = useState();
@@ -38,6 +39,8 @@ const PostPage = () => {
   }, [])
   return (
   <>
+    <Navbar/>
+
     <div >
       <h1>{post && post.title}</h1> <br/>
       <h3>{post && post.description}</h3><br/>

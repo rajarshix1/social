@@ -21,6 +21,8 @@ const SignupPage = () => {
   }, [])
   return (
   <>
+    <Navbar/>
+
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.title}>Signup</h1>
