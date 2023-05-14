@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/LoginPage.module.css';
 import Navbar from '@/components/navbar';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
