@@ -35,7 +35,7 @@ const SignupPage = () => {
             id="name"
             name="name"
             value={name}
-            onChange={(e) => setname(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className={styles.input}
           />
         </div>
