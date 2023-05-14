@@ -1,54 +1,54 @@
+import Link from 'next/link';
+import styles from '../styles/navbar.module.css';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 const Navbar = () => {
+  const router = useRouter()
+console.log('in nav');
+  const [user, setUser] = useState()
+  useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('userdata'))    )
+  }, [])
+  const handleLogout = () =>{
+    setUser(null)
+    localStorage.removeItem('userdata')
+    router.push('/')
+
+  }
+  console.log(user);
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href="/">
-            <p>Home</p>
-          </Link>
-        </li>
-        <li>
-          <Link href="/about">
-            <p>About</p>
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact">
-            <p>Contact</p>
-          </Link>
-        </li>
-      </ul>
-      <style jsx>{`
-        nav {
-          background-color: #333;
-          color: #fff;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1rem;
-        }
-
-        ul {
-          display: flex;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-
-        li {
-          margin-right: 1rem;
-        }
-
-        p {
-          color: #fff;
-          margin: 0;
-          cursor: pointer;
-        }
-
-        p:hover {
-          text-decoration: underline;
-        }
-      `}</style>
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
+        <Link href="/">
+          <p>My App</p>
+        </Link>
+      </div>
+      {
+        user? (<ul className={styles.menu}>
+          <li>
+            <Link href="">
+              <p>{user.name}</p>
+            </Link>
+          </li>
+          <li>
+              <p onClick={handleLogout}>Logout</p>
+          </li>
+        </ul>)
+        : (<ul className={styles.menu}>
+          <li>
+            <Link href="/login">
+              <p>login</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/signup">
+              <p>signup</p>
+            </Link>
+          </li>
+        </ul>)
+      }
+      
     </nav>
   );
 };
